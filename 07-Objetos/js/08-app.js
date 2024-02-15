@@ -11,6 +11,6 @@ Object.freeze(producto);    //toma el objeto y lo vuelve inmutable
 
 //producto.disponible = false;  //esto ya no se podría
 
-console.log(producto);
+console.log(producto);  //Object { nombre: "Monitor 20 pulgadas", precio: 300, disponible: true }
 
-console.log(Object.isFrozen(producto));
+console.log(Object.isFrozen(producto)); //true

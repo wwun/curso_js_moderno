@@ -1,6 +1,7 @@
 
 const producto = {
     nombre: "Monitor 20 pulgadas",
+    codigo: "00001",
     precio: 300,
     disponible: true,
     mostrarInfo: function(){
@@ -17,4 +18,5 @@ const producto2 = {
     }
 }
 
-producto.mostrarInfo();
+producto.mostrarInfo(); //El producto: Monitor 20 pulgadas tiene un precio de 300
+console.log({...producto, ...producto2});   //Object { nombre: "Tablet", codigo: "00001", precio: 3000, disponible: true, mostrarInfo: mostrarInfo() }

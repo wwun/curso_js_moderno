@@ -11,5 +11,5 @@ const producto = {
 //destructuring object
 const {nombre} = producto;  //extrae de un objeto y crea una variable con el mismo nombre al mismo tiempo
 const {precio, disponible} = producto;
-console.log(nombre);
-console.log(disponible);
+console.log(nombre);    //Monitor 20 pulgadas
+console.log(disponible);    //true

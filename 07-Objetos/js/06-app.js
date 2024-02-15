@@ -16,4 +16,6 @@ const producto = {
 
 const {nombre, informacion, informacion : {fabricacion : {pais}}} = producto;
 
-console.log(pais);
+//console.log(medida);  //Uncaught ReferenceError: medida is not defined
+console.log(informacion);  //Object { medidas: {…}, fabricacion: {…} }
+console.log(pais);  //China

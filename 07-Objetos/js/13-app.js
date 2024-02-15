@@ -8,8 +8,8 @@ const producto = {
     }
 }
 
-console.log( Object.keys( producto));
+console.log( Object.keys( producto));   //Array(4) [ "nombre", "precio", "disponible", "mostrarInfo" ]
 
-console.log(Object.values(producto ));
+console.log(Object.values(producto ));  //Array(4) [ "Monitor 20 pulgadas", 300, true, mostrarInfo() ]
 
-console.log(Object.entries( producto));
+console.log(Object.entries( producto)); //Array(4) [ (2) […], (2) […], (2) […], (2) […] ]
