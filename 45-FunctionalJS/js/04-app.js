@@ -8,3 +8,14 @@ const carrito = [
     { nombre: 'Bocinas', precio: 300},
     { nombre: 'Laptop', precio: 800},
 ];
+
+const obtenerNombres = producto => {
+    return producto.nombre;
+}
+
+//const resultado = carrito.map(producto => producto.nombre); //ya no sería así
+const resultado = carrito.map(obtenerNombres);
+
+//ambas funciones son iguales en performance
+
+console.log(resultado);
