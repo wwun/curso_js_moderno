@@ -1,3 +1,9 @@
+//utilizado performance.now()
+//async que se agrega en el html <script src="js/app.js async"></script> y espera a qe se cargue el script para ejecutar el código
+//defer que se agrega en el html <script src="js/app.js defer"></script> y no va a ejecutar el código del script hasta qe el html esté listo
+//debugger; detiene la ejecución y muestra dotas las variables hasta ese momento
+//por seguridad se recomienda usar DOM scripting con textContent y no innerHTML y hashear información sensible con bcrypt
+
 const criptomonedasSelect = document.querySelector('#criptomonedas');
 const monedaSelect = document.querySelector('#moneda');
 const formulario = document.querySelector('#formulario');
@@ -37,6 +43,7 @@ function consultarCriptomonedas() {
 // llena el select 
 function selectCriptomonedas(criptomonedas) {
 
+    const startForEachTime = performance.now();
     criptomonedas.forEach( cripto => {
         const { FullName, Name } = cripto.CoinInfo;
         const option = document.createElement('option');
@@ -44,7 +51,23 @@ function selectCriptomonedas(criptomonedas) {
         option.textContent = FullName;
         // insertar el HTML
         criptomonedasSelect.appendChild(option);
+        console.log(`forEach executed`);
     });
+    const endForEachTime = performance.now();
+    console.log(`execution forEach time: ${endForEachTime - startForEachTime}`)
+
+    const startForTime = performance.now();
+    for(let i=0; i<criptomonedas.length; i++){
+        const { FullName, Name } = criptomonedas[i].CoinInfo;
+        const option = document.createElement('option');
+        option.value = Name;
+        option.textContent = FullName;
+        // insertar el HTML 
+        criptomonedasSelect.appendChild(option);
+        console.log(`for executed`);
+    }
+    const endForTime = performance.now();
+    console.log(`execution for time: ${endForTime - startForTime}`);
 
 }
 
@@ -89,6 +112,8 @@ function mostrarAlerta(mensaje) {
 
 function consultarAPI() {
 
+    const inicio = performance.now();
+
     const { moneda, criptomoneda} = objBusqueda;
 
     const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`;
@@ -101,6 +126,10 @@ function consultarAPI() {
             mostrarCotizacionHTML(cotizacion.DISPLAY[criptomoneda][moneda]);
         });
 
+    const fin = performance.now();
+
+    console.log(`consultar API execution time: ${fin - inicio}`)
+
 }
 
 function mostrarCotizacionHTML(cotizacion) {
@@ -111,7 +140,7 @@ function mostrarCotizacionHTML(cotizacion) {
     const  { PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, LASTUPDATE } = cotizacion;
 
 
-    debugger;
+    //debugger;
 
     const precio = document.createElement('p');
     precio.classList.add('precio');
@@ -129,7 +158,7 @@ function mostrarCotizacionHTML(cotizacion) {
     const ultimaActualizacion = document.createElement('p');
     ultimaActualizacion.innerHTML = `<p>Última Actualización: <span>${LASTUPDATE}</span></p>`;
 
-    debugger;
+    //debugger;
 
     resultado.appendChild(precio);
     resultado.appendChild(precioAlto);
